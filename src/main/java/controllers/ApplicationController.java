@@ -14,18 +14,34 @@
 package controllers;
 
 
+import java.io.IOException;
+
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import ninja.Result;
 import ninja.Results;
+import ninja.params.Param;
+import service.MailService;
 
 
 @Singleton
 public class ApplicationController
 {
+    @Inject
+    MailService mailService;
+
 
     public Result index()
     {
         return Results.html();
+    }
+
+
+    private Result sendEmail( @Param( "name" ) String name, @Param( "email" ) String email,
+                              @Param( "message" ) String message ) throws IOException
+    {
+        mailService.send( email, name, message, false );
+        return Results.json().render( "Thanks!" );
     }
 }
