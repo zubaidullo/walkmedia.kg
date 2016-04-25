@@ -8,7 +8,7 @@
     <!-- replace "jar" with "war" and -->
     <!-- comment ninja-standalone dependency and  -->
     <!-- uncomment the dependency for ninja-servlet -->
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <groupId>kg.walkmedia</groupId>
     <version>1.0-SNAPSHOT</version>
 
@@ -20,6 +20,9 @@
     </properties>
 
     <build>
+        <!-- The app runs as ROOT in Jetty -->
+        <finalName>ROOT</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
